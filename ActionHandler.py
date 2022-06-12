@@ -1,8 +1,16 @@
+import pandas as pd
+
 product={}
 description={}
 stock={}
 money=0
 warehouse={}
+total_cost=0
+flag=0
+cart={}
+
+data = pd.read_csv('store_data.csv')
+df=pd.DataFrame(data)
 
 def ADDITEM():
     p_no= int(input('Enter item number: '))
@@ -17,9 +25,10 @@ def ADDITEM():
     if n==1:
         print("Item number already exist, changing value to ",p_no)
     
-    warehouse.update({p_no:{'name':p_name,
-                            'stock':p_stock,
-                            'price':p_price}})
+    warehouse.update({'no':p_no,
+                      'name':p_name,
+                      'stock':p_stock,
+                      'price':p_price})
 
     print("Item was added successfully!\n")
     return warehouse
@@ -34,17 +43,14 @@ def ADDSTOCK():
         products['stock']=products['stock']+qty
     else:
         print("Item doesn't exist\n")
+    
     return warehouse
-
-total_cost=0
-flag=0
-cart={}
 
 def BUYPRODUCT():
     p_no= int(input("Enter item number: "))
     if(p_no in warehouse):
-        print("Item")
-        buy_amount= int(input("Enter"))
+        print("Item: ", warehouse[p_no]['name'])
+        buy_amount= int(input("Enter purchase amount: "))
         products = warehouse[p_no]
         current_stock = products['stock']
         if(flag==1):
@@ -65,3 +71,33 @@ def BUYPRODUCT():
         print("Sorry! We don't have such an item!\n")
 
     return warehouse, cart
+
+def CHECKOUT():
+    print()
+    print("You bought the following items: ",cart)
+    print("Total: Rp ",round(total_cost,2))
+    money=money+total_cost
+    total_cost=0
+    flag=1
+    cart.clear()
+    print()
+    print("You can still purchase items after check out, your cart has been reset. To quit press q")
+    print()
+
+def STATUS():
+    CurrentMoney=money
+    print()
+    print('Current Store Money: Rp ', CurrentMoney)
+    print('Current Store info:')
+    for i in range(0,len(warehouse)):
+        products=warehouse[i+1]
+        print('- Product: ', products['name'], '\t, Price: Rp ', products['price'], '\t, Stock:', products['stock'])
+    print()
+
+def ActionLog():
+    details = pd.read_csv('Warehouse.csv', sep=';', header = None)
+    df=pd.DataFrame(details)
+    warehouse.to_csv('Warehouse.csv','a',index = False, header = None)
+
+database = pd.DataFrame.from_dict(warehouse, orient='index')
+database.to_csv('store_data.csv',mode ='a',index = False, header = None)

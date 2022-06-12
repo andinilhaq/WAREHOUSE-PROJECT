@@ -3,6 +3,38 @@ description={}
 stock={}
 money=0
 warehouse={}
+
+try:
+    details = open("Warehouse.txt","r")
+
+    no_items = int((details.readline()).rstrip("\n"))
+
+    for i in range(0,no_items):
+        line = (details.readline()).rstrip("\n")
+        x1,x2 = line.split("#")
+        x1 = int(x1)
+        x2 = float(x2)
+        product.update({x1:x2})
+    
+    for i in range(0,no_items):
+        line  = (details.readline()).rstrip("\n")
+        x1,x2 = line.split("#")
+        x1=int(x1)
+        description.update({x1: x2})
+
+    for i in range(0,no_items):
+        line = (details.readline()).rstrip("\n")
+        x1,x2 = line.split("#")
+        x1 = int(x1)
+        x2 = int(x2)
+        stock.update({x1: x2})
+
+except:
+    print("Stock kosong")
+
+finally:
+    details.close()
+
 cart=[]
 
 c="y"
@@ -231,3 +263,15 @@ if(total_cost>0 and flag==0):
     print("Total: ","Rp",round(total_cost,2))
 
 print("\nThank you for using Warehouse APP")
+
+try:
+    details = open("Warehouse.txt","w")
+    no_items=len(product)
+    details.write("Warehouse Data: \n")
+    for i in range(0,no_items):
+        details.write(str(i+1)+". Product: "+description[i+1]+"\t, Price: Rp "+str(product[i+1])+"\t, Stock: "+str(stock[i+1])+"\n")
+except:
+   print("Stock saved")
+  
+finally:
+    details.close()
