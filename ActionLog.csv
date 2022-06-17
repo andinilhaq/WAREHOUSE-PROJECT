@@ -1,0 +1,9 @@
+ActionLog, Name, StockChange, CurrentStock
+ADD_STOCK,Pencil,20,300
+TAKE_ITEM,Book,20,150
+ADD_ITEM,Eraser,450,450
+ADD_STOCK,Eraser,20,470
+ADD_ITEM,Correction Tape,50,50
+ADD_ITEM,Stabilo,100,100
+ADD_STOCK,Stabilo,50,150
+TAKE_ITEM,Eraser,20,450
