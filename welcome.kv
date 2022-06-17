@@ -1,0 +1,35 @@
+<Welcome>:
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+    MDLabel:
+        text: "WAREHOUSE APP"
+        font_size: "25sp"
+        halign: "center"
+        pos_hint: {"center_x": 0.5,"center_y": 0.8}
+    MDLabel:
+        text: "Welcome to WAREHOUSE APP"
+        font_size: "14sp"
+        halign: "center"
+        pos_hint: {"center_x": 0.5,"center_y": 0.7}
+        color: rgba(127,127,127,255)
+    MDRoundFlatButton:
+        text: "ADD ITEM"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint: .5, .075
+        on_release: 
+            root.manager.current = "Function"
+            root.manager.transition.direction = "left"
+    MDRoundFlatButton:
+        text: "ADD STOCK"
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        size_hint: .5, .075
+        on_release: 
+            root.manager.current = "Function2"
+            root.manager.transition.direction = "left"
+    MDRoundFlatButton:
+        text: "TAKE ITEM"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        size_hint: .5, .075
+        on_release: 
+            root.manager.current = "Function3"
+            root.manager.transition.direction = "left"
