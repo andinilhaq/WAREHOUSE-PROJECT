@@ -1,0 +1,52 @@
+<ADDITEM>:
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint: {"center_x":0.1, "center_y":0.9}
+        on_release:
+            root.manager.current= "welcome"
+            root.manager.transition.direction = "right"
+    MDTextField:
+        id: num
+        hint_text: "Item number"
+        height: "30"
+        width: "200"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    MDTextField:
+        id: name
+        hint_text: "Item description"
+        height: "30"
+        width: "200"
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+    MDTextField:
+        id: stock
+        hint_text: "Item stock"
+        height: "30"
+        width: "200"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+    MDTextField:
+        id: price
+        hint_text: "Item price"
+        height: "30"
+        width: "200"
+        pos_hint: {"center_x": 0.5, "center_y": 0.2}  
+    MDLabel:
+        text: "Please fill item details"
+        halign: "center"
+        pos_hint: {"center_x": 0.5, "center_y": 0.7}
+    MDFillRoundFlatButton:
+        text: "Submit"
+        halign: "right"
+        pos_hint: {"center_x": 0.75, "center_y": 0.1}
+        on_release:
+            root.manager.current= "welcome"
+            root.manager.transition.direction = "right"
+    MDRoundFlatButton:
+        text: "Cancel"
+        halign: "right"
+        pos_hint: {"center_x": 0.9, "center_y": 0.1}
+        on_release:
+            root.manager.current= "welcome"
+            root.manager.transition.direction = "right"
+    
